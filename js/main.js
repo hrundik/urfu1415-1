@@ -1,5 +1,5 @@
 define(["jquery"], function ($) {
 $(function () {
-	$(".cardContents").text("Hello, world!");
+	$(".cardContents").text("Bye, world!");
 });
 });
