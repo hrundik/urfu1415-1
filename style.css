@@ -4,17 +4,76 @@ html, body {
 	margin: 0;
 }
 
-.cardContents {
-	position: absolute;
-	margin: auto;
-	padding: 20px;
-	top: 0; 
-	left: 0;
-	bottom: 0;
-	right: 0;
-	height: 250px;
-	width: 450px;
-	background-color: #DDDDDD;
-	border: 2px solid;
-    border-radius: 25px;
+#card {
+    background-color: #FFAAAA;
+    height: 325px;
+    width: 510px;
+}
+#title {
+    position: inherit;
+    padding-bottom: -6px;
+    color: #AA44AA;
+    font: 18px sans-serif;
+}
+#left_part {
+    position: relative;
+    left: 31px;
+    top: 84px;
+}
+#right_part {
+    position: relative;
+    left: 185px;
+    bottom: 205px;
+}
+#foto {
+    position: inherit;
+    background-color: #000000;
+}
+#signature {
+    position: absolute;
+    background-color: #DDAAAA;
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.number {
+    position: inherit;
+    display:inline-block;
+    margin-top:14px;
+    color: #AA44AA;
+}
+.text {
+    position: inherit;
+    padding-left: 24px;
+    font: bold 14px sans-serif;
+}
+.text2 {
+    position: inherit;
+    padding-left: 36px;
+    font: bold 14px sans-serif;
+}
+.number2 {
+    position: inherit;
+    display:inline-block;
+    margin-right: -13px;
+    color: #AA44AA;
+}
+.number3 {
+    position: inherit;
+    display:inline-block;
+    margin-top:14px;
+    margin-left: 36px;
+    color: #AA44AA;
+}
+.number4 {
+    position: inherit;
+    display:inline-block;
+    color: #AA44AA;
+}
+.input {
+    margin-left: 24px;
+    width: 84px;
 }
