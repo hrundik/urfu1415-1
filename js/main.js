@@ -1,18 +1,18 @@
-define(["jquery"], function ($) {
+п»їdefine(["jquery"], function ($) {
 $(document).ready(function () {
-    //элемент с текстом
+    //СЌР»РµРјРµРЅС‚ СЃ С‚РµРєСЃС‚РѕРј
     var $span_element;
-    //элемент для рисования(canvas) фото
+    //СЌР»РµРјРµРЅС‚ РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ(canvas) С„РѕС‚Рѕ
     var foto = document.getElementById("foto");
     var foto_context = foto.getContext("2d");
-    //для чтения картинки
+    //РґР»СЏ С‡С‚РµРЅРёСЏ РєР°СЂС‚РёРЅРєРё
     var reader = new FileReader();
     var img = new Image();
-    //элемент для вывода видеопотока
+    //СЌР»РµРјРµРЅС‚ РґР»СЏ РІС‹РІРѕРґР° РІРёРґРµРѕРїРѕС‚РѕРєР°
     var video = document.getElementById("camera");
-    //видеопоток
+    //РІРёРґРµРѕРїРѕС‚РѕРє
     var videoStreamUrl = false;
-    //canvas для подписи
+    //canvas РґР»СЏ РїРѕРґРїРёСЃРё
     var signature = document.getElementById("signature");
     var signature_context = signature.getContext("2d");
     var is_drawing = false;
@@ -21,34 +21,34 @@ $(document).ready(function () {
 
     reader.onload = function (event) {
         var dataUri = event.target.result;
-	//ждать, пока изображение не будет полностью обработано
+	//Р¶РґР°С‚СЊ, РїРѕРєР° РёР·РѕР±СЂР°Р¶РµРЅРёРµ РЅРµ Р±СѓРґРµС‚ РїРѕР»РЅРѕСЃС‚СЊСЋ РѕР±СЂР°Р±РѕС‚Р°РЅРѕ
         img.onload = function () {
-            //изображение должно быть с таким же отношением высоты и ширины как у элемента foto
+            //РёР·РѕР±СЂР°Р¶РµРЅРёРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СЃ С‚Р°РєРёРј Р¶Рµ РѕС‚РЅРѕС€РµРЅРёРµРј РІС‹СЃРѕС‚С‹ Рё С€РёСЂРёРЅС‹ РєР°Рє Сѓ СЌР»РµРјРµРЅС‚Р° foto
             foto_context.drawImage(img, 0, 0, foto.width, foto.height);
         };
         img.src = dataUri;
     };
 
-    //написать свою информацию(любой текст)
+    //РЅР°РїРёСЃР°С‚СЊ СЃРІРѕСЋ РёРЅС„РѕСЂРјР°С†РёСЋ(Р»СЋР±РѕР№ С‚РµРєСЃС‚)
     function change_text() {
-        //создаем поле для ввода
+        //СЃРѕР·РґР°РµРј РїРѕР»Рµ РґР»СЏ РІРІРѕРґР°
         $input_element = $("<input class='input'></input>");
-        //при снятии фокуса сохраняем текст
+        //РїСЂРё СЃРЅСЏС‚РёРё С„РѕРєСѓСЃР° СЃРѕС…СЂР°РЅСЏРµРј С‚РµРєСЃС‚
         $input_element.blur(save_text);
-        //сохраняем элемент с текстом
+        //СЃРѕС…СЂР°РЅСЏРµРј СЌР»РµРјРµРЅС‚ СЃ С‚РµРєСЃС‚РѕРј
         $span_element = $(this);
-        //заменяем текст на поле ввода
+        //Р·Р°РјРµРЅСЏРµРј С‚РµРєСЃС‚ РЅР° РїРѕР»Рµ РІРІРѕРґР°
         $(this).replaceWith($input_element);
         $input_element.focus();
     }
 
-    //сохранить текст, введенный в input
+    //СЃРѕС…СЂР°РЅРёС‚СЊ С‚РµРєСЃС‚, РІРІРµРґРµРЅРЅС‹Р№ РІ input
     function save_text() {
         if ($(this).val().length > 0) {
             $span_element.text($(this).val());
         }
         $span_element.click(change_text);
-        //возвращаем элемент с текстом
+        //РІРѕР·РІСЂР°С‰Р°РµРј СЌР»РµРјРµРЅС‚ СЃ С‚РµРєСЃС‚РѕРј
         $(this).replaceWith($span_element);
     }
 
@@ -60,18 +60,18 @@ $(document).ready(function () {
 	$("#clear").hide();
     }
 
-    //включение отображения с камеры в video
+    //РІРєР»СЋС‡РµРЅРёРµ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ СЃ РєР°РјРµСЂС‹ РІ video
     function start_camera() {
         navigator.getUserMedia({
             video: true
         }, function (stream) {
-            // разрешение от пользователя получено
+            // СЂР°Р·СЂРµС€РµРЅРёРµ РѕС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕР»СѓС‡РµРЅРѕ
 
             try {
                 window.URL.createObjectURL = window.URL.createObjectURL || window.URL.webkitCreateObjectURL || window.URL.mozCreateObjectURL || window.URL.msCreateObjectURL;
-                // получаем url поточного видео
+                // РїРѕР»СѓС‡Р°РµРј url РїРѕС‚РѕС‡РЅРѕРіРѕ РІРёРґРµРѕ
                 videoStreamUrl = window.URL.createObjectURL(stream);
-                //устанавливаем как источник для video
+                //СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РєР°Рє РёСЃС‚РѕС‡РЅРёРє РґР»СЏ video
                 video.src = videoStreamUrl;
             } catch (exception_var) {
                 alert("Your browser does not support video stream");
@@ -79,8 +79,8 @@ $(document).ready(function () {
         }, function () {});
     }
 
-    //возвращает массив из 4 элементов-параметров, задающих обрезку фото с камеры
-    //обрезка подбирается в зависимости от размеров foto
+    //РІРѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ РёР· 4 СЌР»РµРјРµРЅС‚РѕРІ-РїР°СЂР°РјРµС‚СЂРѕРІ, Р·Р°РґР°СЋС‰РёС… РѕР±СЂРµР·РєСѓ С„РѕС‚Рѕ СЃ РєР°РјРµСЂС‹
+    //РѕР±СЂРµР·РєР° РїРѕРґР±РёСЂР°РµС‚СЃСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂР°Р·РјРµСЂРѕРІ foto
     function central_area() {
         var ratio = foto.width / foto.height;
         if (ratio < video.videoWidth / video.videoHeight) {
@@ -98,16 +98,16 @@ $(document).ready(function () {
             return;
         }
 
-        //параметры обрезки
+        //РїР°СЂР°РјРµС‚СЂС‹ РѕР±СЂРµР·РєРё
         var params = central_area();
-        // отрисовываем на canvas текущий обрезанный кадр видео
+        // РѕС‚СЂРёСЃРѕРІС‹РІР°РµРј РЅР° canvas С‚РµРєСѓС‰РёР№ РѕР±СЂРµР·Р°РЅРЅС‹Р№ РєР°РґСЂ РІРёРґРµРѕ
         foto_context.drawImage(video, params[0], params[1], params[2], params[3], 0, 0, foto.width, foto.height);
         $(".get_foto").hide();
         $("#hide").hide();
 	$("#clear").hide();
     }
 
-    //привязка событий кнопок
+    //РїСЂРёРІСЏР·РєР° СЃРѕР±С‹С‚РёР№ РєРЅРѕРїРѕРє
 
     $(".text").click(change_text);
     $(".text2").click(change_text);
@@ -127,7 +127,7 @@ $(document).ready(function () {
         signature_context.clearRect(0, 0, signature.width, signature.height);
     });
 
-    //привязка событий для рисования
+    //РїСЂРёРІСЏР·РєР° СЃРѕР±С‹С‚РёР№ РґР»СЏ СЂРёСЃРѕРІР°РЅРёСЏ
 
     signature.onmousedown = function (e) {
         $("#clear").show();
