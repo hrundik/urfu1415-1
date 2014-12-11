@@ -7,24 +7,29 @@
 </head>
 
 <body>
-		<div id = "back">
+	<div id = "back">
         <div id = "logo"><img src = "http://urfu.ru/typo3conf/ext/urfu/Resources/Public/images/header/logo1.png" height = "40" width = "120"></img></div>
         <div id = "SB">СТУДЕНЧЕСКИЙ БИЛЕТ №<span class = "data">1</span></div>
-        <canvas id="foto"></canvas>
+        <canvas id="foto" img src="http://urfu.ru/typo3conf/ext/urfu/Resources/Public/images/header/logo1.png"></canvas>
         <div class = "tf">
             <div id = "fname">Фамилия: <span class= "data">Пережогин</span></div>
             <div id = "name">Имя:<span class= "data">Сергей</span></div>
             <div id = "tname">Отчество:<span class= "data">Васильевич</span></div>
             <div id = "inst">Институт:<span class= "data">УРФУ</span></div>
             <div id = "sform">Ф-ма обучения:<span class= "data">очная</span></div>
-            <div id = "desc">Подпись<canvas id="signature" width="90" height="40"></canvas> </div>
+            <div id = "desc">Подпись:<canvas id="sign" width="90" height="40"></canvas> </div>
         </div>
-    </div> 
+    </div>
 	
 	<div class = "foto_panel" hidden>
-		<button id = "sf">CameraON</button>
-		<button id = "tfoto">Take Foto</button>	
-		<video id="camera" autoplay="autoplay"></video>
+		
+		<div><input type ="file" id = "file"></input>
+			<button id = "load">Upload</button></div>
+			
+		<div><button id = "sf">CameraON</button>
+			 <button id = "tfoto">Take Foto</button></div>
+			 
+			<div><video id="camera" autoplay="autoplay"></video></div>
 	</div>
 	
 </body>

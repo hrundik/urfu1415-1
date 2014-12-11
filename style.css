@@ -30,14 +30,21 @@ html, body {
 }
 
 .tf{
-    margin: 25px 0 0 10px;
+    margin: 10px 0 0 10px;
     float:left; 
 }
 
-#camera, #load{
-    margin: 20px 0 0 10px;
-    float: left;
-    width: 100px;
+.tf div{
+    margin-bottom: 5px;
+}
+
+canvas {
+	width
+	border: solid 1px;
+	margin-left: 10px;
+}
+
+#load{
 }
 
 #desc{
@@ -50,4 +57,9 @@ html, body {
 
 input text{
 	width:10px;
+}
+
+#camera{
+	border: solid 1px;
+	width: 120px;
 }

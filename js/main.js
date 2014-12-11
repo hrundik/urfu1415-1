@@ -1,11 +1,11 @@
-define(["jquery"], function ($) {
+ define(["jquery"], function ($) {
 $(function () {
 $(document).ready(function() {
 		
     function edit(){
 		$a = $(this);
 		
-		$enter_text = $("<input class = 'data' type = 'text' size='10' value =" + $(this).text() +"></input>");
+		$enter_text = $("<input class = 'data' type = 'text' size='8' value =" + $(this).text() +"></input>");
 		$(this).replaceWith($enter_text);	
 				
 		$enter_text.focus();
@@ -18,28 +18,20 @@ $(document).ready(function() {
 				$a.click(edit);
 			});	
     }
-
-    $(".data").click(edit);
 	
-	$("#foto").click( function () {
-		$(".foto_panel").show();
-	})
-	
-		$("#sf").click( function () {
-			start();
-			});
-	
-    var foto = document.getElementById("foto");
-    var fContext = foto.getContext("2d");
-    var video = document.getElementById("camera");
-    var videoStreamUrl = false;
+	var
+		sign = $("#sign")[0],
+		foto = $("#foto")[0],
+		fContext = foto.getContext("2d"),
+		video = $("#camera")[0],
+		videoStreamUrl = false,
+		localStream;
                                     
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     
-    var localStream;
+
     
    function start() {
-	   console.log("start");
 	   
 	   navigator.getUserMedia (
 		  {
@@ -47,8 +39,6 @@ $(document).ready(function() {
 		  },
 		   //если получили разрешение
 		  function (localMediaStream) {
-					
-					
 					window.URL.createObjectURL = window.URL.createObjectURL || window.URL.webkitCreateObjectURL || window.URL.mozCreateObjectURL || window.URL.msCreateObjectURL;
 					// получаем url поточного видео
 					videoStreamUrl = window.URL.createObjectURL(localMediaStream);
@@ -57,25 +47,56 @@ $(document).ready(function() {
 			  localStream = localMediaStream;
 		  },
 		   //если ошибка
-		   function(){console.log("Error");}
+		   function(){}
 	   );
-   }  ;
+   };
    
    function capture() {
+
         if (!videoStreamUrl) {
             alert("Camera is off!");
             return;
         }
         
-        var width = photo.width;
-        var heigth = photo.height;
-        fContext.drawImage(video, 0,0,width,height);
-        localStream.stop()
+        var width = foto.width;
+        var heigth = foto.height;
+        fContext.drawImage(video, 0,0,width,heigth);
+        localStream.stop();
+		$(".foto_panel").hide();
+		
     }
-    
-
 	
-	//$('#sf').click(start);
+	
+	var reader = new FileReader();
+	reader.onload = function(event) {
+		var dataUri = event.target.result,
+			img = new Image();
+	
+		img.onload = function() {
+			fContext.drawImage(img, 0, 0,foto.width,foto.height);
+		};
+		
+		img.src = dataUri;
+		$(".foto_panel").hide();
+	};
+	
+	function load() {
+		var file = $('#file')[0].files[0];
+		if (file != undefined){
+			reader.readAsDataURL(file);
+		}
+	}
+	
+	
+	$(".data").click(edit);	
+	$("#foto").click( function () {
+	
+		$(".foto_panel").show();
+	})
+	
+	$("#sf").click(start);
+	$("#tfoto").click(capture);
+	$("#load").click(load);
 	
 	
 });
