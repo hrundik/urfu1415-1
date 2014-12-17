@@ -72,4 +72,11 @@ body
 	height:160px;
     border:2px solid black;
 }
+#sign
+{
+	position:absolute;
+	left:20px;
+	width:110px;
+    border:1px solid black;
+}
 
