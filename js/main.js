@@ -15,13 +15,17 @@ $(document).ready(function () {
     //canvas для подписи
     var signature = document.getElementById("signature");
     var signature_context = signature.getContext("2d");
+    //canvas для рисования подписи
+    var big_signature = document.getElementById("big_signature");
+    var big_signature_context = big_signature.getContext("2d");
+    big_signature_context.lineWidth = 5;
     var is_drawing = false;
 
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
     reader.onload = function (event) {
-        var dataUri = event.target.result;
-	//ждать, пока изображение не будет полностью обработано
+        var dataUri = event.target.result;     
+        //ждать, пока изображение не будет полностью обработано
         img.onload = function () {
             //изображение должно быть с таким же отношением высоты и ширины как у элемента foto
             foto_context.drawImage(img, 0, 0, foto.width, foto.height);
@@ -55,9 +59,7 @@ $(document).ready(function () {
     function load_from_file() {
         var file = document.getElementById('file').files[0];
         reader.readAsDataURL(file);
-        $(".get_foto").hide();
-        $("#hide").hide();
-	$("#clear").hide();
+        $("#hide").click();
     }
 
     //включение отображения с камеры в video
@@ -102,11 +104,21 @@ $(document).ready(function () {
         var params = central_area();
         // отрисовываем на canvas текущий обрезанный кадр видео
         foto_context.drawImage(video, params[0], params[1], params[2], params[3], 0, 0, foto.width, foto.height);
-        $(".get_foto").hide();
-        $("#hide").hide();
-	$("#clear").hide();
+        $("#hide").click();
     }
-
+    
+    //перерисовывает подпись из окна в область подписи
+    function save_signature() {
+        var c = console;
+        var signature_image = new Image();
+        signature_image.onload = function () {
+            signature_context.clearRect(0, 0, signature.width, signature.height);
+            signature_context.drawImage(signature_image, 0, 0, signature.width, signature.height)            
+        }
+        signature_image.src = big_signature.toDataURL();
+        $("#cancel").click();
+    }
+    
     //привязка событий кнопок
 
     $(".text").click(change_text);
@@ -121,34 +133,41 @@ $(document).ready(function () {
     $("#hide").click(function () {
         $("#hide").hide();
         $(".get_foto").hide();
-        $("#clear").hide();
     });
     $("#clear").click(function () {
-        signature_context.clearRect(0, 0, signature.width, signature.height);
+        big_signature_context.clearRect(0, 0, big_signature.width, big_signature.height);
     });
-
+    $("#cancel").click(function () {
+        $("#overlay").hide();
+        $("#get_signature").hide();
+    });
+    $("#signature").click(function () {
+        $("#clear").click();
+        $("#overlay").show();
+        $("#get_signature").show();
+    });
+    $("#save").click(save_signature);
+    
     //привязка событий для рисования
 
-    signature.onmousedown = function (e) {
-        $("#clear").show();
-        $("#hide").show();
-        signature_context.beginPath();
-        signature_context.moveTo(e.offsetX, e.offsetY);
+    big_signature.onmousedown = function (e) {
+        big_signature_context.beginPath();
+        big_signature_context.moveTo(e.offsetX, e.offsetY);
         is_drawing = true;
     }
 
-    signature.onmouseup = function (e) {
+    big_signature.onmouseup = function (e) {
         is_drawing = false;
     }
 
-    signature.onmouseout = function (e) {
+    big_signature.onmouseout = function (e) {
         is_drawing = false;
     }
 
-    signature.onmousemove = function (e) {
+    big_signature.onmousemove = function (e) {
         if (is_drawing) {
-            signature_context.lineTo(e.offsetX, e.offsetY);
-            signature_context.stroke();
+            big_signature_context.lineTo(e.offsetX, e.offsetY);
+            big_signature_context.stroke();
         }
     }
 });

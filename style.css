@@ -32,12 +32,6 @@ html, body {
 #signature {
     position: absolute;
     background-color: #DDAAAA;
-    -moz-user-select: none;
-    -o-user-select:none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 .number {
     position: inherit;
@@ -76,4 +70,32 @@ html, body {
 .input {
     margin-left: 24px;
     width: 84px;
+}
+#overlay {
+    z-index: 2;
+    position: fixed; 
+    background-color: #000;
+    opacity: 0.8;
+    width: 100%; 
+    height: 100%;
+    top: 0; 
+    left: 0;
+}
+#get_signature {
+    width: 570px; 
+    height: 300px;
+    z-index: 3;
+    position: fixed; 
+    top: 200px;
+    left: 500px;
+    background: #FFFFFF;
+}
+#big_signature {
+    background-color: #DDAAAA;
+    -moz-user-select: none;
+    -o-user-select:none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
