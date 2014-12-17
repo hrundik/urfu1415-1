@@ -4,17 +4,66 @@ html, body {
 	margin: 0;
 }
 
-.cardContents {
-	position: absolute;
-	margin: auto;
-	padding: 20px;
-	top: 0; 
-	left: 0;
-	bottom: 0;
-	right: 0;
-	height: 250px;
-	width: 450px;
-	background-color: #DDDDDD;
-	border: 2px solid;
-    border-radius: 25px;
+#back{
+    height: 250px;
+    width: 410px;
+    border: 3px solid black;
+}
+
+#logo{
+    margin: 7px 0 0 7px;       
+}
+
+#SB{
+    margin: 5px 0 0 0;     
+    text-align: center;
+    font: 16pt, courier;
+    font-weight: bold;
+}
+
+#foto{
+    margin: 15px 10px 0 10px;
+    background: black;
+    height: 150px;
+    width: 120px;
+    float:left;
+}
+
+.tf{
+    margin: 10px 0 0 10px;
+    float:left; 
+}
+
+.tf div{
+    margin-bottom: 5px;
+}
+
+canvas {
+	width
+	border: solid 1px;
+	margin-left: 10px;
+}
+
+#load{
+}
+
+#desc{
+    margin: 10px 0px 0px 0px; 
+}
+
+#sign{
+	border: solid 1px;
+}
+
+.data  {
+	margin-left :10px;
+}
+
+input text{
+	width:10px;
+}
+
+#camera{
+	border: solid 1px;
+	width: 120px;
 }
