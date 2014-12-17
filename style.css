@@ -6,6 +6,7 @@ body
 #back
 { 
     background-color: #FFCBDB;
+	font-size:18px;
     height: 270px;
     width: 500px;
     border-radius:10px;    
@@ -27,6 +28,7 @@ body
 .text
 {
     color:#000000;
+    font-size:18px;
 	font-weight: bold;
     margin-left: 20px;
 }
@@ -36,7 +38,6 @@ body
 {
     display:block;
     color:#000000;
-    font-size:14px;
     margin-left: 28px;
 }
 
@@ -62,6 +63,13 @@ body
     margin-left: 20px;
     border:2px solid black;
 }
-
-
+#photo
+{
+	position:absolute;
+	left:30px;
+	top:30px;
+	width:130px;
+	height:160px;
+    border:2px solid black;
 }
+
