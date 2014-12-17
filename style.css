@@ -51,6 +51,10 @@ canvas {
     margin: 10px 0px 0px 0px; 
 }
 
+#sign{
+	border: solid 1px;
+}
+
 .data  {
 	margin-left :10px;
 }

@@ -87,6 +87,45 @@ $(document).ready(function() {
 		}
 	}
 	
+	function draw() {
+	
+		//var dp = open("index.html","SignPanel","height = 250, width = 500, left = 500, top = 200, location = no, toolbar = no, menubar = no");
+	  canvas = document.getElementById("sign");
+      context = canvas.getContext("2d");
+	  isDrawing = false;
+	  $(this).css("cursor","pointer");
+	  
+		function startDrawing(e) {
+			isDrawing = true;
+			context.beginPath();
+			context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+		}
+		
+		function drawing(e) {
+			if (isDrawing == true)
+			{
+				var x = e.pageX - canvas.offsetLeft;
+				var y = e.pageY - canvas.offsetTop;
+				context.lineTo(x, y);
+				context.stroke();
+			}
+		}
+		
+		function stopDrawing() {
+			isDrawing = false;	
+			$(this).css("cursor","default");
+		}
+				
+      canvas.onmousedown = startDrawing;
+      canvas.onmouseup = stopDrawing;
+      canvas.onmouseout = stopDrawing;
+      canvas.onmousemove = drawing;
+	  
+	};
+	
+		function clear() {
+		context.clearRect(0, 0, canvas.width, canvas.height);
+	}
 	
 	$(".data").click(edit);	
 	$("#foto").click( function () {
@@ -97,6 +136,8 @@ $(document).ready(function() {
 	$("#sf").click(start);
 	$("#tfoto").click(capture);
 	$("#load").click(load);
+	$("#sign").click(draw);
+	$("#signt").click(clear);
 	
 	
 });
