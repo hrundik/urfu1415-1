@@ -1,0 +1,135 @@
+<html>
+<head>
+        <meta charset="utf-8">
+    </head>
+
+<body>
+<img align="left" hspace=20 src="http://ispn.urfu.ru/fileadmin/templates/abiturient/img/urfu-logo.png">
+    <div >
+        <span class="cl">Вселенское интергалактическое автономное образовательное учреждение высшего профессионального образования "Уральский федеральный университет"</span><br><br></div>
+    
+<div align="center"><span class="Header">СТУДЕНЧЕСКИЙ БИЛЕТ №</span>
+    <span class = "data">5O2O26O4</span></div>
+      
+<span id="photo"><img  align="left" hspace=10 class="accountImage" src="http://cs425316.vk.me/v425316400/840a/Cm85bPRHNlw.jpg"></span>
+
+<div class="Info">
+        <div class="overlay">&nbsp;</div>
+    <div>
+        <span class="fields">Фамилия </span>
+        <span class="data" onclick="f(this);">Я</span><br>
+        <span class="fields">Имя </span>
+        <span class="data" onclick="f(this);">Есть</span><br>
+        <span class="fields">Отчество </span>
+        <span class="data" onclick="f(this);">Грут</span><br>
+        <span class="fields">Институт </span>
+        <span class="data" onclick="f(this);">Спасения галактики</span><br>
+        <span class="fields">Форма обучения </span>
+        <span class="data" onclick="f(this);">очная</span><br>
+        <span class="fields">Дата выдачи билета </span>
+        <span class="data" onclick="f(this);">01.09.2112</span><br>
+        <canvas id="signature" height="80" width="300">your signature</canvas>
+    </div>
+            <input id="edit" type="text" hidden/>
+</div>
+
+            <input type="file" id="files" name="files[]" multiple />
+
+        <video id='v'></video>
+
+</body>
+</html>
+
+<style>
+   canvas 
+   {
+       border: 1px dashed black;
+   }
+</style>
+
+
+<script>
+          
+
+// функция, которая срабатывает при клике мыши на одно из полей с информацией
+// заменяет поле на поле ввода
+    function f(el)
+    {       
+        el.outerHTML = '<input type="text"  onblur="saveChanges(this)" />';
+        // у поля ввода установлено свойство onblur, т. е. при потере фокуса вызывается функция saveChanges
+    };
+
+// сохраняет изменённый текст в виде текстового блока
+    function saveChanges(el)
+    {   
+        var newContent = el.value;
+        el.outerHTML = '<span onclick="f(this)">' + newContent + '</span>'
+    };
+
+
+
+
+    function handleFileSelect(evt) {
+    var files = evt.target.files; // переменная для работы с файлами
+
+    
+    for (var i = 0, f; f = files[i]; i++) {
+
+      
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      // переменная для хранения загруженного изображения
+      var reader = new FileReader();
+
+      // после того, как изображение загружено
+      reader.onload = (function(theFile) {
+        return function(e) {
+          
+          //отображение загруженного изображения   
+          var newPhoto = document.getElementById('photo') // находим в документе объект с нашим фото
+          newPhoto.innerHTML = ['<img align="left" height=200 width=200 class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          // заменяет старое изображение на новое
+        };
+      })(f);
+
+      // содержит данные об изображении в виде ссылки на внешний ресурс
+      reader.readAsDataURL(f);
+    }
+  }
+
+  // добавляем к файловому HTML элементу событие, которое происходит при выборе изображения
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+//получаем элемент для рисования 
+var canvasWithSignature = document.getElementById('signature');
+// устанавливаем контекст: отрисовка будет производиться в 2D
+var context = canvasWithSignature.getContext("2d");
+
+// устанавливаем, какая функция будет отображаться при нажатии мыши
+canvasWithSignature.onmousedown = function(e)
+    {
+        // пока мышь зажата и двигается
+        e.onmousemove = Move(e);
+    };
+
+    // функция, выполняющаяся при движении мыши
+    function Move(evt) {
+    
+// получаем координаты мыши в Canvas
+  coordX = evt.offsetX == undefined ? evt.layerX : evt.offsetX;
+coordY = evt.offsetY == undefined ? evt.layerY : evt.offsetY;
+
+// проводим линию между двумя точками
+context.lineTo(coordX, coordY);
+
+context.strokeStyle = "#000";
+context.stroke();
+
+}
+
+
+
+</script>
