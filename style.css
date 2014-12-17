@@ -2,6 +2,8 @@ html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+    background-image: url(http://cdn.joxi.ru/uploads/prod/2014/09/07/7a6/d8c/de3a9cd74826ebfbbc293c5fbdad962ac9a9f827.jpg);
+    background-repeat: no-repeat;
 }
 
 .cardContents {
@@ -17,4 +19,146 @@ html, body {
 	background-color: #DDDDDD;
 	border: 2px solid;
     border-radius: 25px;
+}
+
+
+.left_elements{
+    float: left;
+}
+
+.right_elements{
+    float:left;
+    position: relative;
+    margin-left: 15px;
+}
+
+.top_text{
+    font-size: 11px;
+    font-weight: 900;
+}
+
+input.top_text{
+    background: rgba( 255, 0, 0, 0);
+    border: none;
+    font-family: Lucida;
+    font-size: 13.36px;
+    height: 14px;
+    font-weight: 900;
+    margin-left: 10px;   
+}
+
+input.not_the_first{
+    display:block;
+    position: relative;
+    margin-left: 23.5px;
+    margin-top: -4px;
+}
+
+.bot_text{
+    display: block;
+    position: relative;
+    margin-left: 24px;
+    margin-top: -2px;
+    font-size: 10px;
+    font-weight: 300; 
+}
+
+input.in_the_same_line{
+    margin-left: -0.5px;!important;
+}
+
+input.numbers_with_brackets{
+    margin-left: 4px;
+}
+
+#photo{
+    background-image: url(http://cdn.joxi.ru/uploads/prod/2014/09/07/63f/42c/d66a6933c0a4e672d44b547e5ecc07528c7875d9.jpg);
+    background-repeat: no-repeat;
+    display: block;
+    position:relative;
+    background-size: 100% 100%;
+    width: 80px;
+    height: 100px;
+    margin-left: 15px;
+    margin-top: 15px;
+    border-radius: 10px;    
+}
+
+.position{
+    font-size: 13px;
+    font-weight: 900;
+    font-family: Serif;
+    margin-top: -3px;
+}
+
+#six{
+    position:relative;
+    left: 7px;
+    top: 121px;   
+}
+
+#seven{
+    position: relative;
+    left: 7px;
+    bottom: -15px;  
+}
+
+#nine{
+    position: relative;
+    bottom: -3px; 
+}
+
+#title{
+    font-family: Verdana;
+    color: rgb(214,73,73);
+    letter-spacing: -1px;
+    font-size: 12px;
+    word-spacing: 2px;
+    margin-top: -1.5px;
+    font-weight: 500;
+}
+
+#category{
+    outline: 2px solid #000;
+    height: 13px;
+    width: 10px;
+    margin-top: 2px;
+}
+
+#signature{
+   /* background-image: url(http://6.firepic.org/6/images/2014-09/11/8lkgj8mr2d9c.png);*/
+    background-repeat: no-repeat;
+    display: block;
+   /* position:absolute;
+    background-size: 70% 50%;
+    width: 60px;
+    height: 75px;*/
+    margin-left: 25px;
+    margin-top: -12px;  
+}
+
+.pictureButtons
+{
+    float:left;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.hide-layout {
+  background-color: red;
+  opacity: 0.8;
+  position: fixed;
+  z-index: 998;
+}
+
+#signatureButton
+{
+    display: block;
+    margin-top: 10px;
+}
+
+#hideSignature
+{
+    margin-top: 10px;
 }

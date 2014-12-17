@@ -7,6 +7,89 @@
     <script data-main="js/init" src="require.js" type="text/javascript"></script>
 </head>
 <body>
-	<div class="cardContents">&nbsp;</div>
+	<canvas id="hide-layout" class="hide-layout" hidden></canvas>
+<div class="left_elements">
+        <span class="position" id="six">6.</span>
+        <canvas id="photo"></canvas>
+        <span class="position" id="seven">7.</span>
+        <canvas id="signature" width="60" height="40"></canvas> 
+        <button id="signatureButton">Расписаться</button>        
+    </div>
+
+
+    <div class="right_elements">
+        <div id="title">ВОДИТЕЛЬСКОЕ УДОСТОВЕРЕНИЕ</div>
+        <div class="position">1.
+            <span class="top_text"><input name="input" id="1" class="top_text" type = "text" value = "МУРАТОВ"/></span>
+            <span class="bot_text">MURATOV</span>
+        </div>
+        <div class="position">2.
+            <span class="top_text"><input name="input" id="2" class="top_text" type = "text" size="22" value = "АЛЕКСАНДР ВАЛЕРЬЕВИЧ"/></span>
+            <span class="bot_text">ALEKSANDR VALER'YEVICH</span>
+        </div>
+        <div class="position">3.
+            <span class="top_text"><input name="input" id="3" class="top_text" type = "text" value = "16.12.1994"/></span>
+            <span class="top_text">
+                <input name="input" id="3a" class="top_text  not_the_first" type = "text" value = "ТЮМЕНСКАЯ ОБЛАСТЬ"/>
+            </span>
+            <span class="bot_text">TYUMENSKAYA OBL.</span>
+        </div>
+        <div class="position">4a)
+            <span class="top_text">
+                <input name="input" id="4a" class="top_text numbers_with_brackets" type = "text" value = "12.03.2012" maxlength="10" 
+size="8"/>
+            </span>
+            <span class="in_the_same_line">4b)</span>
+            <span class="top_text numbers_with_brackets">
+                <input name="input" id="4b" class="top_text in_the_same_line" type = "text" value = "12.03.2022" maxlength="10" 
+size="8"/>
+            </span>
+        </div>
+        <div class="position">4с)
+            <span class="top_text numbers_with_brackets">
+                <input name="input" id="4c" class="top_text numbers_with_brackets" type = "text" size = "22" value = "ГИБДД 720093"/>
+            </span>
+            <span class="bot_text">GIBDD 720093</span>
+        </div>
+        <div class="position">5.
+            <span class="top_text">
+                <input  name="input" id="5" class="top_text" type = "text" value = "78298182"/>
+            </span>
+        </div>
+        <div class="position">8.
+            <span class="top_text">
+                <input name="input" id="8" class="top_text" type = "text" value = "ТЮМЕНСКАЯ ОБЛАСТЬ"/>
+            </span>
+            <span class="bot_text">TYUMENSKAYA OBL.</span>
+        </div>
+        <div class="position" id="nine">
+            <span>9.</span>
+            <span class="top_text">
+                <input name="input" class="top_text" id="category" maxlength="1" size="1" type = "text" value = "B"/>
+            </span>
+        </div>
+        <button id="hideSignature" hidden>Очистить подпись</button>
+    </div>
+
+
+<div class="pictureButtons" hidden>
+    <div>
+    <button id="hideAll">Скрыть всё</button>
+    </div>
+    <div class="getPhoto">
+        <input id="file" type=file></input>        
+        <button id="load">Загрузить на карточку</button>
+    </div>
+    <div class="getPhoto">
+        Снять с камеры
+        <div>
+        <button id="start">Включить камеру</button>
+        <button id="capture">Снять</button>
+        </div>
+        <video id="camera" autoplay="autoplay"></video>
+    </div>
+    
+</div>
+
 </body>
 </html>
