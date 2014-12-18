@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<META content="text/html; charset=utf-8" http-equiv="Content-Type">
+	 <style type="text/css">
+	 
+#document{ position:absolute; }
+
+p{ margin:1px; }
+canvas { border: 1px solid #ccc }
+input{ border: none;}
+
+#companyInfo{
+    float:left;
+    margin: 5px;
+    font-size: x-small;
+    font-weight: normal;
+ }
+#logo{
+    margin: 8px 5px 5px 5px;
+    float:left;
+    background-size: 120px,45px;  
+}
+#documentNumber{
+    margin: 1px 1px 1px 50px;
+    text-align: center;
+    float:left;
+}
+#photo{ 
+    float:left;
+    margin: 0px 10px 10px 10px;  
+}
+#fields{
+    display:block;
+    float:left;
+    font-weight: bolder; 
+}
+.editableField{
+    cursor: pointer;    
+}
+#controlButtons{
+    position:absolute;
+    top:300px;
+}
+	</style>
+</head>
+
+<body>
+<div id="document" height="250" border="1" >
+     <div id="header">
+        <img id="logo" src="http://cs620218.vk.me/v620218318/1dc79/l7WLLwxALGs.jpg" width="120" height="45" border="0"></img>
+        <div id="companyInfo">
+            Федеральное государственное автономное образовательное
+            <p>учреждение высшего профессионального образования</p>
+            <p>"Уральский федеральный университет</p>
+            <p>имени первого президента России Б.Н.Ульцина"</p>
+         </div>
+    </div>  
+            <div id="documentNumber">СТУДЕНЧЕСКИЙ БИЛЕТ № <input class="editableField"  onclick="editField(this)" onblur="saveText(this)" value="304050"></input>
+        </div>
+    <div id="editableElements">
+
+        <span id="photo">   
+            <img src="http://trollface-fun.ru/wp-content/uploads/Yao-ming-face.jpg" width="120" height="150"></img>
+        </span>
+        <div id="fields">
+            <p> Фамилия 
+                <input class="editableField" id="surname" onclick="editField(this)" onblur="saveText(this)" value="Введите фамилию..." ></input>
+            </p>
+            <p > Имя 
+                <input class="editableField" id="name" onclick="editField(this)" onblur="saveText(this)" value="Введите имя..."></input>
+            </p>
+            <p> Отчество 
+                <input class="editableField" id="patronymic" onclick="editField(this)" onblur="saveText(this)" value="Введите отчество..."></input>
+            </p>
+            <p> Институт 
+                <input class="editableField" id="institute" onclick="editField(this)" onblur="saveText(this)" value="Введите институт..."></input>
+            </p>
+            <p> Форма обучения 
+                <input class="editableField" id="studyMode" onclick="editField(this)" onblur="saveText(this)" value="Изменить..."></input>
+            </p>
+            <p> Дата выдачи билета 
+                <input class="editableField" id="date" onclick="editField(this)" onblur="saveText(this)" type="date"></input>
+            </p>
+            <p> Ректор <canvas id="rector" width="180" height="70"></canvas></p>
+        </div>
+        
+    </div>
+</div>
+<div id="controlButtons">
+    <input type="file" id="files" name="files"/>
+</div>
+
+
+<script>
+var text;
+function editField(element) {
+    text = element.value;
+    element.value = "";  
+}
+
+function saveText(element)
+{
+    if(element.value == "")
+    {
+        element.value = text;
+    }
+}
+
+(function(){
+var el = document.getElementById('rector');
+var ctx = el.getContext('2d');
+var isDrawing;
+
+el.onmousedown = function(e) {
+    var coordX = e.offsetX == undefined ? e.layerX : e.offsetX;
+    var coordY = e.offsetY == undefined ? e.layerY : e.offsetY;
+  isDrawing = true;
+  ctx.moveTo(coordX, coordY);
+};
+el.onmousemove = function(e) {
+  if (isDrawing) {
+    var coordX = e.offsetX == undefined ? e.layerX : e.offsetX;
+    var coordY = e.offsetY == undefined ? e.layerY : e.offsetY;
+    ctx.lineTo(coordX, coordY);
+    ctx.stroke();
+  }
+};
+el.onmouseup = function() {
+  isDrawing = false;
+};
+el.onmouseleave = function() {
+    isDrawing = false;
+};
+
+function handleFileSelect(evt) {
+    var files = evt.target.files;
+    
+    for (var i = 0, f; f = files[i]; i++) {
+        
+        if (!f.type.match('image.*')) {
+            continue;
+        }
+        
+        var reader = new FileReader();
+        reader.onload = (function(theFile) {
+            return function(e) {       
+                var newPhoto = document.getElementById('photo')
+                newPhoto.innerHTML = ['<img height=150 width=120 class="thumb" src="', e.target.result,
+                                      '" title="', escape(theFile.name), '"/>'].join('');
+            };
+        })(f);
+        
+        reader.readAsDataURL(f);
+    }
+}
+
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
+}());
+</script>
+
+</body>
+</html>
