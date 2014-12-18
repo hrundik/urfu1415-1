@@ -1,0 +1,55 @@
+﻿.overlay {
+    background-image: url('http://s018.radikal.ru/i517/1412/17/56d30aae347a.jpg');
+    background-size:500px;
+    background-repeat: no-repeat;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    position: absolute;
+}
+#PersonImage {
+    z-index: 1;
+    position: relative;
+    opacity:0.9;
+    top: 42px;
+    bottom: 0;
+    left: 20px;
+    right: 0;
+}
+#FIO {
+    color: white;
+    position: absolute;
+    left: 140px;
+    top: 50px;
+    line-height: 0.7em;
+}
+}
+.fields {
+    position: relative;
+    z-index: 1;
+}
+.data {
+    top: 42px;
+    left: 20px;
+    z-index: 4;
+    position: relative;
+}
+#Sign {
+    color: white;
+    position: absolute;
+    left: 55px;
+    top: 200px;
+    line-height: 0.7em;
+}
+#modal {
+    position: absolute;
+    z-index: 3;
+    left: 200px;
+    top: 20px;
+    background-color: #D1EEEE;
+    width: 320px;
+    height: 300px;
+    text-align: center;
+}
