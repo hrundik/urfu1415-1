@@ -1,12 +1,32 @@
+﻿
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Task 1: private card</title>
-	<link rel="stylesheet" href="style.css">
-    <script data-main="js/init" src="require.js" type="text/javascript"></script>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Pasp</title>
+  <script src='http://code.jquery.com/jquery-compat-git.js'></script>
+  <script src='./js.js'></script>
+  <link rel="stylesheet" type="text/css" href="./css.css">
 </head>
 <body>
-	<div class="cardContents">&nbsp;</div>
+    <div id="background"></div>
+        <div id="Photo"> </div>
+
+	<div id="PasportData">
+		
+         <p id = "string1"> <a class="edit" id="SurName" data-value="Введите фамилию.."></a> </p>
+        <p id = "string2"> <a class="edit" id="Name" data-value="Введите имя.."></a> </p>
+        <p id = "string3"><a class="edit" id="Fathersname" data-value="Введите отчество.."></a></p>
+        <p id = "string4">  <a class="edit" id="Sex" data-value="Пол"></a></p>
+        <p id = "string5"> <a class="edit" id="BirthDate" data-value="Введите дату рождения.."></a></p>
+        <p id = "string6"> <a class="edit" id="Rodina" data-value="Введите место рождения.."></a> </p>
+			
+			 <a class="Canvas" id="Signature">Распишитесь здесь..</a>
+		</div>
+
 </body>
+
+
 </html>
+
+
