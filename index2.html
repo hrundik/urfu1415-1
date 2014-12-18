@@ -90,6 +90,7 @@ input{ border: none;}
 </div>
 <div id="controlButtons">
     <input type="file" id="files" name="files"/>
+    <button onclick="clearCanvas()"> Удалить подпись </button>
 </div>
 
 
@@ -106,6 +107,13 @@ function saveText(element)
     {
         element.value = text;
     }
+}
+
+function clearCanvas()
+{
+    var canvas = document.getElementById('rector');
+    var context = canvas.getContext("2d");
+    context.clearRect ( 0 , 0 , canvas.width, canvas.height );  
 }
 
 (function(){
